@@ -1,8 +1,6 @@
 var DETAIL_IMAGE_SELECTOR = '[data-image-role=\"target\"]';
 var DETAIL_TITLE_SELECTOR = '[data-image-role="title"]';
 var DETAIL_FRAME_SELECTOR = '[data-image-role="frame"]';
-var PREVIOUS_BUTTON = '[data-image-role="previous_button"]';
-var NEXT_BUTTON = '[data-image-role="next_button"]';
 var THUMBNAIL_LINK_SELECTOR = '[data-image-role="trigger"]';
 var HIDDEN_DETAIL_CLASS = 'hidden-detail';
 var TINY_EFFECT_CLASS = 'is-tiny';
@@ -86,30 +84,6 @@ function titleFromThumb(thumbnail) {
         var thumbnails = getThumbnailsArray();
         thumbnails.forEach(addThumbClickHandler);
         addKeyPressHandler();
-        document.querySelector(PREVIOUS_BUTTON).addEventListener('click', function(event) {
-          event.preventDefault();
-          thumbnails = getThumbnailsArray();
-          var detail = document.querySelector(DETAIL_IMAGE_SELECTOR);
-          for (var index = 0; index < thumbnails.length; index++) {
-            if (thumbnails[index].getAttribute('data-image-url') === detail.getAttribute('src')) {
-              if (index === 0) {
-                index = thumbnails.length;
-              }
-              setDetailsFromThumb(thumbnails[index - 1]);
-              showDetails();
-              break;}}});
-        document.querySelector(NEXT_BUTTON).addEventListener('click', function(event) {
-          event.preventDefault();
-          thumbnails = getThumbnailsArray();
-          var detail = document.querySelector(DETAIL_IMAGE_SELECTOR);
-          for (var index = 0; index < thumbnails.length; index++) {
-            if (thumbnails[index].getAttribute('data-image-url') === detail.getAttribute('src')) {
-              if (index === thumbnails.length - 1) {
-                index = -1;
-              }
-              setDetailsFromThumb(thumbnails[index + 1]);
-              showDetails();
-              break;}}});
     }
     
     initalizeEvents();
